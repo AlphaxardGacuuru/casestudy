@@ -21,9 +21,12 @@ defmodule CasestudyWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CasestudyWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CasestudyWeb do
+    pipe_through :api
+
+    resources "/products", ProductController, except: [:new, :edit]
+    resources "/orders", OrderController, except: [:new, :edit]
+  end
 
   # Enables LiveDashboard only for development
   #

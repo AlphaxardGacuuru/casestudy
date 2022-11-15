@@ -1,9 +1,19 @@
 # Casestudy
 
-To start your Phoenix server:
+To get started Git clone the project to your local machine
+
+Start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Start your Vue:
+
+  * cd casestudy
+  * npm install
+  * npm run dev -- --port 3000
+
+Configure your DB:
+  * Go to your config/dev.exs and setup your database credentials
+  * Go to your config/test.exs setup your database credentials
