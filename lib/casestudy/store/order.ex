@@ -8,9 +8,9 @@ defmodule Casestudy.Store.Order do
   alias Casestudy.Store.Order
 
   schema "orders" do
-    field :fulfilled, :boolean, default: false
     field :product_id, :integer
-    field :quantity, :string
+    field :quantity, :integer
+    field :fulfilled, :boolean
 
     timestamps()
   end

@@ -30,12 +30,12 @@ products = [
 
 # Delete data before inserting
 Repo.delete_all(Store.Order)
-# Repo.delete_all(Store.Product)
+Repo.delete_all(Store.Product)
 
 # Insert multiple products
-# for n <- products do
-# Store.create_product(%{name: "Product #{n.name}", inventory: n.inventory})
-# end
+for n <- products do
+  Store.create_product(%{name: "Product #{n.name}", inventory: n.inventory})
+end
 
 # Get products
 products = from(p in Store.Product, order_by: p.id, limit: 5) |> Repo.all()

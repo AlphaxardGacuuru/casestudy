@@ -106,8 +106,6 @@ defmodule Casestudy.Store do
     Product.changeset(product, attrs)
   end
 
-
-
   @doc """
   Returns the list of orders.
 
@@ -118,7 +116,8 @@ defmodule Casestudy.Store do
 
   """
   def list_orders do
-    Repo.all(Order)
+    from(o in Order, order_by: o.id)
+    |> Repo.all()
   end
 
   @doc """

@@ -4,8 +4,8 @@ defmodule Casestudy.Repo.Migrations.CreateOrders do
   def change do
     create table(:orders) do
       add :product_id, :integer
-      add :quantity, :string
-      add :fulfilled, :boolean, default: false, null: false
+      add :quantity, :integer
+      add :fulfilled, :boolean, default: false
 
       timestamps()
     end
