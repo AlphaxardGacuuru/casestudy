@@ -1,23 +1,37 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import { RouterLink, RouterView } from "vue-router";
+import Hello from "./components/Hello.vue";
+import "bootstrap/dist/css/bootstrap.css";
+
+export default {
+  components: { Hello },
+  data() {
+    return {
+      url: "http://localhost:4000",
+    };
+  },
+};
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo"
+         class="logo"
+         src="@/assets/logo.svg"
+         width="125"
+         height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <Hello name="Example" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/warehouse">Warehouse</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+  <RouterView :url="url" />
 </template>
 
 <style scoped>
