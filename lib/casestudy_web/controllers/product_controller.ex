@@ -3,6 +3,7 @@ defmodule CasestudyWeb.ProductController do
 
   alias Casestudy.Store
   alias Casestudy.Store.Product
+  alias Casestudy.Store.Order
 
   action_fallback CasestudyWeb.FallbackController
 
@@ -25,12 +26,21 @@ defmodule CasestudyWeb.ProductController do
     render(conn, "show.json", product: product)
   end
 
-  def update(conn, %{"id" => id, "product" => product_params}) do
+  def update(conn, %{"id" => id}) do
     product = Store.get_product!(id)
 
-    with {:ok, %Product{} = product} <- Store.update_product(product, product_params) do
-      render(conn, "show.json", product: product)
+    # Decrease inventory by 1
+    inventory = product.inventory - 1
+
+    # Check if inventory is below predefined level
+    if inventory < 5 do
+      Order.reorder(product.id)
     end
+
+    Store.update_product(product, %{inventory: inventory})
+
+    put_status(conn, 200)
+    |> json(%{message: "Product Sold"})
   end
 
   def delete(conn, %{"id" => id}) do

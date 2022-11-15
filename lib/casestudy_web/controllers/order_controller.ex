@@ -25,19 +25,39 @@ defmodule CasestudyWeb.OrderController do
     render(conn, "show.json", order: order)
   end
 
-  def update(conn, %{"id" => id, "order" => order_params}) do
+  def update(conn, %{"id" => id, "quantity" => quantity}) do
     order = Store.get_order!(id)
 
-    with {:ok, %Order{} = order} <- Store.update_order(order, order_params) do
-      render(conn, "show.json", order: order)
-    end
+    Store.update_order(order, %{quantity: quantity})
+
+    put_status(conn, 200)
+    |> json(%{message: "Order Updated"})
+  end
+
+  def update(conn, %{"id" => id}) do
+    order = Store.get_order!(id)
+
+    # Get product
+    product = Store.get_product!(order.product_id)
+
+    # Increase inventory
+    new_inventory = product.inventory + order.quantity
+
+    # Update product inventory
+    Store.update_product(product, %{inventory: new_inventory})
+
+    Store.update_order(order, %{fulfilled: true})
+
+    put_status(conn, 200)
+    |> json(%{message: "Order Dispatched"})
   end
 
   def delete(conn, %{"id" => id}) do
     order = Store.get_order!(id)
 
-    with {:ok, %Order{}} <- Store.delete_order(order) do
-      send_resp(conn, :no_content, "")
-    end
+    Store.delete_order(order)
+
+    put_status(conn, 200)
+    |> json(%{message: "Order deleted"})
   end
 end

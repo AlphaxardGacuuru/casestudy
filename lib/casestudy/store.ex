@@ -7,6 +7,8 @@ defmodule Casestudy.Store do
   alias Casestudy.Repo
 
   alias Casestudy.Store.Product
+  alias Casestudy.Store.Order
+  use Ecto.Schema
 
   @doc """
   Returns the list of products.
@@ -18,7 +20,9 @@ defmodule Casestudy.Store do
 
   """
   def list_products do
-    Repo.all(Product)
+    from(p in Product, order_by: p.id)
+    |> Repo.all()
+    |> Repo.preload(:orders)
   end
 
   @doc """
@@ -102,7 +106,7 @@ defmodule Casestudy.Store do
     Product.changeset(product, attrs)
   end
 
-  alias Casestudy.Store.Order
+
 
   @doc """
   Returns the list of orders.

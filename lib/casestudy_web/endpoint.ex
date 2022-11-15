@@ -46,7 +46,6 @@ defmodule CasestudyWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug CasestudyWeb.Router
 
   # Added Corsica
   plug(
@@ -56,5 +55,7 @@ defmodule CasestudyWeb.Endpoint do
     allow_headers: ["content-type"],
     allow_credentials: true
     )
-    plug ExampleWeb.Router
+
+    # This has to be below otherwise CORS will raise an error
+    plug CasestudyWeb.Router
 end
