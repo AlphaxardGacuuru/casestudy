@@ -47,4 +47,14 @@ defmodule CasestudyWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug CasestudyWeb.Router
+
+  # Added Corsica
+  plug(
+    Corsica,
+    origins: "http://localhost:3000",
+    log: [rejected: :error, invalid: :warn, accepted: :debug],
+    allow_headers: ["content-type"],
+    allow_credentials: true
+    )
+    plug ExampleWeb.Router
 end
