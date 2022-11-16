@@ -1,10 +1,10 @@
 # Casestudy
 
 To get started Git clone the project to your local machine
-cd into the directory
 
 Start your Phoenix server:
 
+  * cd into the directory
   * Install dependencies with `mix deps.get`
   * Go to config/dev.exs and config/test.exs and setup your database credentials
   * Create and migrate your database with `mix ecto.setup`
