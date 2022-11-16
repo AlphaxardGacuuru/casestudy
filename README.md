@@ -1,6 +1,7 @@
 # Casestudy
 
 To get started Git clone the project to your local machine
+cd into the directory
 
 Start your Phoenix server:
 
