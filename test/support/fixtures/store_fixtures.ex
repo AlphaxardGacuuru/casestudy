@@ -11,7 +11,7 @@ defmodule Casestudy.StoreFixtures do
     {:ok, product} =
       attrs
       |> Enum.into(%{
-        inventory: 42,
+        inventory: 5,
         name: "some name"
       })
       |> Casestudy.Store.create_product()
@@ -26,9 +26,9 @@ defmodule Casestudy.StoreFixtures do
     {:ok, order} =
       attrs
       |> Enum.into(%{
-        fulfilled: true,
-        product_id: 42,
-        quantity: "some quantity"
+        fulfilled: false,
+        product_id: 1,
+        quantity: 10
       })
       |> Casestudy.Store.create_order()
 

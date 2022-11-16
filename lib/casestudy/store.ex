@@ -39,7 +39,12 @@ defmodule Casestudy.Store do
       ** (Ecto.NoResultsError)
 
   """
-  def get_product!(id), do: Repo.get!(Product, id)
+  def get_product!(id) do
+    from(p in Product, where: p.id == ^id)
+    |> Repo.all()
+    |> Repo.preload(:orders)
+    |> Enum.at(0)
+  end
 
   @doc """
   Creates a product.

@@ -22,7 +22,7 @@ export default {
          height="125" />
 
     <div class="wrapper">
-      <Hello name="Example" />
+      <Hello name="Case Study" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

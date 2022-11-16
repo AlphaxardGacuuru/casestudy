@@ -73,9 +73,9 @@ export default {
     <br />
 
     <center>
-      <RouterLink to="/warehouse"
+      <RouterLink to="/orders"
                   class="btn btn-lg btn-primary rounded-0">
-        Go to Orders
+        Go to My Orders
       </RouterLink>
     </center>
   </div>
