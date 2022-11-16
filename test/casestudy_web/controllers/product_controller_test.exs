@@ -46,9 +46,6 @@ defmodule CasestudyWeb.ProductControllerTest do
       orders = json_response(conn, 200)
       assert length(orders) > 0
     end
-
-    test "check order is created", %{conn: conn, product: %Product{id: id} = product} do
-    end
   end
 
   defp create_product(_) do
